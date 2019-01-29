@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.actionjvm.servicemybatis.mapper.TestMapper">
+
+    <!--获取updatetest-->
+    <select id="getUpdateTests" resultType="UpdateTest">
+        SELECT * FROM update_test
+    </select>
+
+    <!--修改updatetest-->
+    <update id="doUpdateTest">
+        UPDATE update_test set field1=#{field1} where id=${id}
+    </update>
+
+    <!--获取addtest-->
+    <select id="getAddTests" resultType="AddTest">
+        SELECT * FROM add_test
+    </select>
+    <!--添加addtest-->
+    <insert id="doAddTest">
+        INSERT add_test(id,field1,field2,fnum) VALUES (${id},#{field1},#{field2},${fnum})
+    </insert>
+
+    <!--获取删除Test-->
+    <select id="getDelTest" resultType="DelTest">
+        SELECT * FROM del_test
+    </select>
+
+    <delete id="doDelTest">
+        DELETE FROM del_test WHERE id=${id}
+    </delete>
+</mapper>
