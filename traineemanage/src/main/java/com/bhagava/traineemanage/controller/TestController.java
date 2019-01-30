@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Auther: FeiJunhao
@@ -47,13 +49,19 @@ public class TestController {
     @GetMapping("/get_info")
     public Object getUserInfo(String token){
         System.out.println("token:" + token);
-        String str = "{\n" +
-                "    name: 'super_admin',\n" +
-                "    user_id: '1',\n" +
-                "    access: ['super_admin', 'admin'],\n" +
-                "    token: 'super_admin',\n" +
-                "    avator: 'https://file.iviewui.com/dist/a0e88e83800f138b94d2414621bd9704.png'\n" +
+        Map<String,Object> userInfo = new HashMap<>();
+        userInfo.put("name","manage");
+        userInfo.put("user_id","1");
+        userInfo.put("access",new String[]{"super_admin","admin"});
+        userInfo.put("token","super_admin");
+        userInfo.put("avator","https://file.iviewui.com/dist/a0e88e83800f138b94d2414621bd9704.png");
+        String str = "{" +
+                "    name: 'super_admin'," +
+                "    user_id: '1'," +
+                "    access: ['super_admin', 'admin']," +
+                "    token: 'super_admin'," +
+                "    avator: 'https://file.iviewui.com/dist/a0e88e83800f138b94d2414621bd9704.png'" +
                 "  }";
-        return str;
+        return userInfo;
     }
 }
