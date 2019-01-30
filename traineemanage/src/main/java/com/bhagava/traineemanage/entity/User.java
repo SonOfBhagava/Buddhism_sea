@@ -11,23 +11,30 @@ public class User implements Serializable {
 
     private String name;
 
+    private String weixinAccount;
+
+    /**
+     * 班级+学号
+     */
     private String account;
 
     private String password;
 
     private String face;
 
+    private String classId;
+
     /**
      * 0代表旁听组
      */
     private Integer group;
 
-    private Integer phone;
+    private Long phone;
 
-    private Integer permission;
+    private Integer role;
 
     /**
-     * 0启用，1注销
+     * 0禁用/1学习中/2结业/3肄业
      */
     private Integer status;
 
@@ -47,6 +54,14 @@ public class User implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getWeixinAccount() {
+        return weixinAccount;
+    }
+
+    public void setWeixinAccount(String weixinAccount) {
+        this.weixinAccount = weixinAccount;
     }
 
     public String getAccount() {
@@ -73,6 +88,14 @@ public class User implements Serializable {
         this.face = face;
     }
 
+    public String getClassId() {
+        return classId;
+    }
+
+    public void setClassId(String classId) {
+        this.classId = classId;
+    }
+
     public Integer getGroup() {
         return group;
     }
@@ -81,20 +104,20 @@ public class User implements Serializable {
         this.group = group;
     }
 
-    public Integer getPhone() {
+    public Long getPhone() {
         return phone;
     }
 
-    public void setPhone(Integer phone) {
+    public void setPhone(Long phone) {
         this.phone = phone;
     }
 
-    public Integer getPermission() {
-        return permission;
+    public Integer getRole() {
+        return role;
     }
 
-    public void setPermission(Integer permission) {
-        this.permission = permission;
+    public void setRole(Integer role) {
+        this.role = role;
     }
 
     public Integer getStatus() {
@@ -119,12 +142,14 @@ public class User implements Serializable {
         User other = (User) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
             && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
+            && (this.getWeixinAccount() == null ? other.getWeixinAccount() == null : this.getWeixinAccount().equals(other.getWeixinAccount()))
             && (this.getAccount() == null ? other.getAccount() == null : this.getAccount().equals(other.getAccount()))
             && (this.getPassword() == null ? other.getPassword() == null : this.getPassword().equals(other.getPassword()))
             && (this.getFace() == null ? other.getFace() == null : this.getFace().equals(other.getFace()))
+            && (this.getClassId() == null ? other.getClassId() == null : this.getClassId().equals(other.getClassId()))
             && (this.getGroup() == null ? other.getGroup() == null : this.getGroup().equals(other.getGroup()))
             && (this.getPhone() == null ? other.getPhone() == null : this.getPhone().equals(other.getPhone()))
-            && (this.getPermission() == null ? other.getPermission() == null : this.getPermission().equals(other.getPermission()))
+            && (this.getRole() == null ? other.getRole() == null : this.getRole().equals(other.getRole()))
             && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()));
     }
 
@@ -134,12 +159,14 @@ public class User implements Serializable {
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
         result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
+        result = prime * result + ((getWeixinAccount() == null) ? 0 : getWeixinAccount().hashCode());
         result = prime * result + ((getAccount() == null) ? 0 : getAccount().hashCode());
         result = prime * result + ((getPassword() == null) ? 0 : getPassword().hashCode());
         result = prime * result + ((getFace() == null) ? 0 : getFace().hashCode());
+        result = prime * result + ((getClassId() == null) ? 0 : getClassId().hashCode());
         result = prime * result + ((getGroup() == null) ? 0 : getGroup().hashCode());
         result = prime * result + ((getPhone() == null) ? 0 : getPhone().hashCode());
-        result = prime * result + ((getPermission() == null) ? 0 : getPermission().hashCode());
+        result = prime * result + ((getRole() == null) ? 0 : getRole().hashCode());
         result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
         return result;
     }
@@ -152,12 +179,14 @@ public class User implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
         sb.append(", name=").append(name);
+        sb.append(", weixinAccount=").append(weixinAccount);
         sb.append(", account=").append(account);
         sb.append(", password=").append(password);
         sb.append(", face=").append(face);
+        sb.append(", classId=").append(classId);
         sb.append(", group=").append(group);
         sb.append(", phone=").append(phone);
-        sb.append(", permission=").append(permission);
+        sb.append(", role=").append(role);
         sb.append(", status=").append(status);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");

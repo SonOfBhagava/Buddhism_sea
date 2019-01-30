@@ -1,6 +1,7 @@
 package com.bhagava.traineemanage.service;
 
 import com.bhagava.traineemanage.entity.User;
+import com.bhagava.traineemanage.entity.UserExample;
 
 import java.util.List;
 
@@ -12,4 +13,6 @@ import java.util.List;
 
 public interface UserService {
     User selectById(int id);
+
+    List<User> selectByExample(UserExample ex);
 }
