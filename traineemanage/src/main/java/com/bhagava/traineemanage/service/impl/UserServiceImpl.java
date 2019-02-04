@@ -1,8 +1,9 @@
-package com.bhagava.traineemanage.service;
+package com.bhagava.traineemanage.service.impl;
 
 import com.bhagava.traineemanage.entity.User;
 import com.bhagava.traineemanage.entity.UserExample;
 import com.bhagava.traineemanage.mapper.UserMapper;
+import com.bhagava.traineemanage.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,5 +27,10 @@ public class UserServiceImpl implements UserService{
     @Override
     public List<User> selectByExample(UserExample ex) {
         return userMapper.selectByExample(ex);
+    }
+
+    @Override
+    public int insertList(List<User> list) {
+        return userMapper.insertList(list);
     }
 }

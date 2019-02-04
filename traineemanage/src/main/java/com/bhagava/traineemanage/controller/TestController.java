@@ -1,15 +1,12 @@
 package com.bhagava.traineemanage.controller;
 
-import com.bhagava.traineemanage.entity.User;
-import com.bhagava.traineemanage.entity.UserExample;
-import com.bhagava.traineemanage.mapper.UserMapper;
+import com.bhagava.traineemanage.service.ProfessorService;
 import com.bhagava.traineemanage.service.UserService;
+import com.bhagava.traineemanage.util.DataProductTool;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -22,6 +19,8 @@ import java.util.Map;
 public class TestController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private ProfessorService professorService;
 
 
     @GetMapping("/test")
@@ -30,13 +29,9 @@ public class TestController {
     }
 
     @GetMapping("/testSql")
-    public String testSql(){
-        UserExample ex = new UserExample();
-        UserExample.Criteria cri = ex.createCriteria();
-        cri.andIdBetween(2,4);
-        List<User> list = userService.selectByExample(ex);
-        System.out.println(list.get(0).getId());
-        return "1";
+    public int testSql(){
+//        return DataProductTool.productUserInfo(20,1,3,userService);
+        return DataProductTool.productProfessor(25,professorService);
     }
 
     @PostMapping("/login")
@@ -63,5 +58,9 @@ public class TestController {
                 "    avator: 'https://file.iviewui.com/dist/a0e88e83800f138b94d2414621bd9704.png'" +
                 "  }";
         return userInfo;
+    }
+
+    public static void main(String[] args) {
+
     }
 }

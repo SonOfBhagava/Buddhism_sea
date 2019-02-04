@@ -8,10 +8,11 @@
     <result column="account" jdbcType="VARCHAR" property="account" />
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="face" jdbcType="VARCHAR" property="face" />
-    <result column="class_id" jdbcType="VARCHAR" property="classId" />
+    <result column="class_id" jdbcType="INTEGER" property="classId" />
     <result column="group" jdbcType="INTEGER" property="group" />
-    <result column="phone" jdbcType="BIGINT" property="phone" />
+    <result column="phone" jdbcType="VARCHAR" property="phone" />
     <result column="role" jdbcType="INTEGER" property="role" />
+    <result column="level" jdbcType="INTEGER" property="level" />
     <result column="status" jdbcType="INTEGER" property="status" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -74,7 +75,7 @@
   </sql>
   <sql id="Base_Column_List">
     id, `name`, weixin_account, account, `password`, face, class_id, `group`, phone, 
-    `role`, `status`
+    `role`, `level`, `status`
   </sql>
   <select id="selectByExample" parameterType="com.bhagava.traineemanage.entity.UserExample" resultMap="BaseResultMap">
     select
@@ -118,11 +119,11 @@
     insert into user (`name`, weixin_account, account, 
       `password`, face, class_id, 
       `group`, phone, `role`, 
-      `status`)
+      `level`, `status`)
     values (#{name,jdbcType=VARCHAR}, #{weixinAccount,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, 
-      #{password,jdbcType=VARCHAR}, #{face,jdbcType=VARCHAR}, #{classId,jdbcType=VARCHAR}, 
-      #{group,jdbcType=INTEGER}, #{phone,jdbcType=BIGINT}, #{role,jdbcType=INTEGER}, 
-      #{status,jdbcType=INTEGER})
+      #{password,jdbcType=VARCHAR}, #{face,jdbcType=VARCHAR}, #{classId,jdbcType=INTEGER}, 
+      #{group,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, #{role,jdbcType=INTEGER}, 
+      #{level,jdbcType=INTEGER}, #{status,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.bhagava.traineemanage.entity.User" useGeneratedKeys="true">
     insert into user
@@ -154,6 +155,9 @@
       <if test="role != null">
         `role`,
       </if>
+      <if test="level != null">
+        `level`,
+      </if>
       <if test="status != null">
         `status`,
       </if>
@@ -175,16 +179,19 @@
         #{face,jdbcType=VARCHAR},
       </if>
       <if test="classId != null">
-        #{classId,jdbcType=VARCHAR},
+        #{classId,jdbcType=INTEGER},
       </if>
       <if test="group != null">
         #{group,jdbcType=INTEGER},
       </if>
       <if test="phone != null">
-        #{phone,jdbcType=BIGINT},
+        #{phone,jdbcType=VARCHAR},
       </if>
       <if test="role != null">
         #{role,jdbcType=INTEGER},
+      </if>
+      <if test="level != null">
+        #{level,jdbcType=INTEGER},
       </if>
       <if test="status != null">
         #{status,jdbcType=INTEGER},
@@ -219,16 +226,19 @@
         face = #{record.face,jdbcType=VARCHAR},
       </if>
       <if test="record.classId != null">
-        class_id = #{record.classId,jdbcType=VARCHAR},
+        class_id = #{record.classId,jdbcType=INTEGER},
       </if>
       <if test="record.group != null">
         `group` = #{record.group,jdbcType=INTEGER},
       </if>
       <if test="record.phone != null">
-        phone = #{record.phone,jdbcType=BIGINT},
+        phone = #{record.phone,jdbcType=VARCHAR},
       </if>
       <if test="record.role != null">
         `role` = #{record.role,jdbcType=INTEGER},
+      </if>
+      <if test="record.level != null">
+        `level` = #{record.level,jdbcType=INTEGER},
       </if>
       <if test="record.status != null">
         `status` = #{record.status,jdbcType=INTEGER},
@@ -246,10 +256,11 @@
       account = #{record.account,jdbcType=VARCHAR},
       `password` = #{record.password,jdbcType=VARCHAR},
       face = #{record.face,jdbcType=VARCHAR},
-      class_id = #{record.classId,jdbcType=VARCHAR},
+      class_id = #{record.classId,jdbcType=INTEGER},
       `group` = #{record.group,jdbcType=INTEGER},
-      phone = #{record.phone,jdbcType=BIGINT},
+      phone = #{record.phone,jdbcType=VARCHAR},
       `role` = #{record.role,jdbcType=INTEGER},
+      `level` = #{record.level,jdbcType=INTEGER},
       `status` = #{record.status,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -274,16 +285,19 @@
         face = #{face,jdbcType=VARCHAR},
       </if>
       <if test="classId != null">
-        class_id = #{classId,jdbcType=VARCHAR},
+        class_id = #{classId,jdbcType=INTEGER},
       </if>
       <if test="group != null">
         `group` = #{group,jdbcType=INTEGER},
       </if>
       <if test="phone != null">
-        phone = #{phone,jdbcType=BIGINT},
+        phone = #{phone,jdbcType=VARCHAR},
       </if>
       <if test="role != null">
         `role` = #{role,jdbcType=INTEGER},
+      </if>
+      <if test="level != null">
+        `level` = #{level,jdbcType=INTEGER},
       </if>
       <if test="status != null">
         `status` = #{status,jdbcType=INTEGER},
@@ -298,11 +312,20 @@
       account = #{account,jdbcType=VARCHAR},
       `password` = #{password,jdbcType=VARCHAR},
       face = #{face,jdbcType=VARCHAR},
-      class_id = #{classId,jdbcType=VARCHAR},
+      class_id = #{classId,jdbcType=INTEGER},
       `group` = #{group,jdbcType=INTEGER},
-      phone = #{phone,jdbcType=BIGINT},
+      phone = #{phone,jdbcType=VARCHAR},
       `role` = #{role,jdbcType=INTEGER},
+      `level` = #{level,jdbcType=INTEGER},
       `status` = #{status,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <!-- 批量插入 -->
+  <insert id="insertList" parameterType="List">
+    INSERT into user (`name`,account,class_id,`group`,phone,role) VALUES
+    <foreach item="item" index="index" collection="list"
+             separator="," >
+      (#{item.name},#{item.account},#{item.classId},#{item.group},#{item.phone},#{item.role})
+    </foreach>
+  </insert>
 </mapper>

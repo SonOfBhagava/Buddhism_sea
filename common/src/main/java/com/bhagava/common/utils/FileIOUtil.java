@@ -14,29 +14,24 @@ public class FileIOUtil {
      * @param fileName 带有绝对路径的完整文件名
      * @return 读取的所有文本内容，如果文件不存会返回提示信息
      */
-    public String readFileByAll(String fileName){
-        String encoding = "UTF-8";
-        File file = new File(fileName);
-        if(!file.exists())
-            return "文件不存在";
-        Long filelength = file.length();
-        byte[] filecontent = new byte[filelength.intValue()];
+    public static String readFileByAll(String fileName){
+        String fileContent = "";
         try {
-            FileInputStream in = new FileInputStream(file);
-            in.read(filecontent);
-            in.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+            File f = new File(fileName);
+            if (f.isFile() && f.exists()) {
+                InputStreamReader read = new InputStreamReader(
+                        new FileInputStream(f), "gbk");
+                BufferedReader reader = new BufferedReader(read);
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    fileContent += line+"\n";
+                }
+                read.close();
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
-        try {
-            return new String(filecontent, encoding);
-        } catch (UnsupportedEncodingException e) {
-            System.err.println("操作系统不支持的编码：" + encoding);
-            e.printStackTrace();
-            return null;
-        }
+        return fileContent;
     }
 
 
@@ -45,7 +40,7 @@ public class FileIOUtil {
      * @param fileName 带有绝对路径的完整文件名
      * @throws IOException
      */
-    public void readFileByLine (String fileName) throws IOException {
+    public static void readFileByLine (String fileName) throws IOException {
         FileInputStream fis =  null;
         InputStreamReader isr = null;
         try {
@@ -72,7 +67,7 @@ public class FileIOUtil {
      * @param fileName 带有绝对路径的完整文件名
      * @param isAppend 是否追加
      */
-    public boolean writeFile(String content,String fileName,boolean isAppend) {
+    public static boolean writeFile(String content,String fileName,boolean isAppend) {
         FileWriter fw = null;
         File f = new File(fileName);
         if(!f.exists())
@@ -110,7 +105,7 @@ public class FileIOUtil {
      * @param fileName 带有绝对路径的完整文件名
      * @return
      */
-    public boolean cleanFile(String fileName){
+    public static boolean cleanFile(String fileName){
         File file =new File(fileName);
         try {
             FileWriter fileWriter =new FileWriter(file);
@@ -122,6 +117,35 @@ public class FileIOUtil {
             return false;
         }
         return true;
+    }
+
+    /**
+     * 清除文本中的符号
+     * @param str
+     * @return
+     */
+    public static String cleanSymbol(String str){
+        str = str.replace(" ","")
+                .replace("，","")
+                .replace("。","")
+                .replace("‘","")
+                .replace("’","")
+                .replace("“","")
+                .replace("”","")
+                .replace("？","")
+                .replace("：","")
+                .replace("《","")
+                .replace("》","")
+                .replace("　","")
+                .replace("\n","")
+                .replace("、","")
+                .replace("\"","")
+                .replace("?","")
+                .replace("-","")
+                .replace(";","")
+                .replace("；","")
+                .replace("！","");
+        return str;
     }
 
     public static void main(String[] args) {

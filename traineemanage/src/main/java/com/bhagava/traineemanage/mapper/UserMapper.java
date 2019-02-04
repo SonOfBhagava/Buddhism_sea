@@ -3,8 +3,6 @@ package com.bhagava.traineemanage.mapper;
 import com.bhagava.traineemanage.entity.User;
 import com.bhagava.traineemanage.entity.UserExample;
 import java.util.List;
-
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -31,4 +29,6 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    int insertList(List<User> list);
 }

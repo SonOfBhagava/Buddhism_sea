@@ -18,20 +18,28 @@ public class User implements Serializable {
      */
     private String account;
 
+    /**
+     * 123456
+     */
     private String password;
 
     private String face;
 
-    private String classId;
+    private Integer classId;
 
     /**
      * 0代表旁听组
      */
     private Integer group;
 
-    private Long phone;
+    private String phone;
 
     private Integer role;
+
+    /**
+     * 0普通身份，1闻熏，2闻思，3如理，4研习
+     */
+    private Integer level;
 
     /**
      * 0禁用/1学习中/2结业/3肄业
@@ -88,11 +96,11 @@ public class User implements Serializable {
         this.face = face;
     }
 
-    public String getClassId() {
+    public Integer getClassId() {
         return classId;
     }
 
-    public void setClassId(String classId) {
+    public void setClassId(Integer classId) {
         this.classId = classId;
     }
 
@@ -104,11 +112,11 @@ public class User implements Serializable {
         this.group = group;
     }
 
-    public Long getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(Long phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
@@ -118,6 +126,14 @@ public class User implements Serializable {
 
     public void setRole(Integer role) {
         this.role = role;
+    }
+
+    public Integer getLevel() {
+        return level;
+    }
+
+    public void setLevel(Integer level) {
+        this.level = level;
     }
 
     public Integer getStatus() {
@@ -150,6 +166,7 @@ public class User implements Serializable {
             && (this.getGroup() == null ? other.getGroup() == null : this.getGroup().equals(other.getGroup()))
             && (this.getPhone() == null ? other.getPhone() == null : this.getPhone().equals(other.getPhone()))
             && (this.getRole() == null ? other.getRole() == null : this.getRole().equals(other.getRole()))
+            && (this.getLevel() == null ? other.getLevel() == null : this.getLevel().equals(other.getLevel()))
             && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()));
     }
 
@@ -167,6 +184,7 @@ public class User implements Serializable {
         result = prime * result + ((getGroup() == null) ? 0 : getGroup().hashCode());
         result = prime * result + ((getPhone() == null) ? 0 : getPhone().hashCode());
         result = prime * result + ((getRole() == null) ? 0 : getRole().hashCode());
+        result = prime * result + ((getLevel() == null) ? 0 : getLevel().hashCode());
         result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
         return result;
     }
@@ -187,6 +205,7 @@ public class User implements Serializable {
         sb.append(", group=").append(group);
         sb.append(", phone=").append(phone);
         sb.append(", role=").append(role);
+        sb.append(", level=").append(level);
         sb.append(", status=").append(status);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
