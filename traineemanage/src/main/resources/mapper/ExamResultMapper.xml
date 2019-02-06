@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bhagava.traineemanage.mapper.ExamResultMapper">
+  <resultMap id="BaseResultMap" type="com.bhagava.traineemanage.entity.ExamResult">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="u_id" jdbcType="INTEGER" property="uId" />
+    <result column="class_id" jdbcType="INTEGER" property="classId" />
+    <result column="exam_classify_id" jdbcType="INTEGER" property="examClassifyId" />
+    <result column="score" jdbcType="INTEGER" property="score" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, u_id, class_id, exam_classify_id, score
+  </sql>
+  <select id="selectByExample" parameterType="com.bhagava.traineemanage.entity.ExamResultExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from exam_result
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from exam_result
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from exam_result
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.bhagava.traineemanage.entity.ExamResultExample">
+    delete from exam_result
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.bhagava.traineemanage.entity.ExamResult" useGeneratedKeys="true">
+    insert into exam_result (u_id, class_id, exam_classify_id, 
+      score)
+    values (#{uId,jdbcType=INTEGER}, #{classId,jdbcType=INTEGER}, #{examClassifyId,jdbcType=INTEGER}, 
+      #{score,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.bhagava.traineemanage.entity.ExamResult" useGeneratedKeys="true">
+    insert into exam_result
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uId != null">
+        u_id,
+      </if>
+      <if test="classId != null">
+        class_id,
+      </if>
+      <if test="examClassifyId != null">
+        exam_classify_id,
+      </if>
+      <if test="score != null">
+        score,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uId != null">
+        #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="classId != null">
+        #{classId,jdbcType=INTEGER},
+      </if>
+      <if test="examClassifyId != null">
+        #{examClassifyId,jdbcType=INTEGER},
+      </if>
+      <if test="score != null">
+        #{score,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.bhagava.traineemanage.entity.ExamResultExample" resultType="java.lang.Long">
+    select count(*) from exam_result
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update exam_result
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.uId != null">
+        u_id = #{record.uId,jdbcType=INTEGER},
+      </if>
+      <if test="record.classId != null">
+        class_id = #{record.classId,jdbcType=INTEGER},
+      </if>
+      <if test="record.examClassifyId != null">
+        exam_classify_id = #{record.examClassifyId,jdbcType=INTEGER},
+      </if>
+      <if test="record.score != null">
+        score = #{record.score,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update exam_result
+    set id = #{record.id,jdbcType=INTEGER},
+      u_id = #{record.uId,jdbcType=INTEGER},
+      class_id = #{record.classId,jdbcType=INTEGER},
+      exam_classify_id = #{record.examClassifyId,jdbcType=INTEGER},
+      score = #{record.score,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bhagava.traineemanage.entity.ExamResult">
+    update exam_result
+    <set>
+      <if test="uId != null">
+        u_id = #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="classId != null">
+        class_id = #{classId,jdbcType=INTEGER},
+      </if>
+      <if test="examClassifyId != null">
+        exam_classify_id = #{examClassifyId,jdbcType=INTEGER},
+      </if>
+      <if test="score != null">
+        score = #{score,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bhagava.traineemanage.entity.ExamResult">
+    update exam_result
+    set u_id = #{uId,jdbcType=INTEGER},
+      class_id = #{classId,jdbcType=INTEGER},
+      exam_classify_id = #{examClassifyId,jdbcType=INTEGER},
+      score = #{score,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

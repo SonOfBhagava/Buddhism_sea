@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bhagava.traineemanage.mapper.ClassScheduleMapper">
+  <resultMap id="BaseResultMap" type="com.bhagava.traineemanage.entity.ClassSchedule">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="number" jdbcType="INTEGER" property="number" />
+    <result column="class_id" jdbcType="INTEGER" property="classId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="start_date" jdbcType="TIMESTAMP" property="startDate" />
+    <result column="semester" jdbcType="VARCHAR" property="semester" />
+    <result column="professor_id" jdbcType="INTEGER" property="professorId" />
+    <association property="professor" fetchType="eager" column="professor_id" select="com.bhagava.traineemanage.mapper.ProfessorMapper.selectByPrimaryKey"/>
+    <association property="classInfo" fetchType="eager" column="class_id" select="com.bhagava.traineemanage.mapper.ClassInfoMapper.selectByPrimaryKey"/>
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, `number`, class_id, title, start_date, semester, professor_id
+  </sql>
+  <select id="selectByExample" parameterType="com.bhagava.traineemanage.entity.ClassScheduleExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from class_schedule
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from class_schedule
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from class_schedule
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.bhagava.traineemanage.entity.ClassScheduleExample">
+    delete from class_schedule
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.bhagava.traineemanage.entity.ClassSchedule" useGeneratedKeys="true">
+    insert into class_schedule (`number`, class_id, title, 
+      start_date, semester, professor_id
+      )
+    values (#{number,jdbcType=INTEGER}, #{classId,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
+      #{startDate,jdbcType=TIMESTAMP}, #{semester,jdbcType=VARCHAR}, #{professorId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.bhagava.traineemanage.entity.ClassSchedule" useGeneratedKeys="true">
+    insert into class_schedule
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="number != null">
+        `number`,
+      </if>
+      <if test="classId != null">
+        class_id,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="startDate != null">
+        start_date,
+      </if>
+      <if test="semester != null">
+        semester,
+      </if>
+      <if test="professorId != null">
+        professor_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="number != null">
+        #{number,jdbcType=INTEGER},
+      </if>
+      <if test="classId != null">
+        #{classId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null">
+        #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="semester != null">
+        #{semester,jdbcType=VARCHAR},
+      </if>
+      <if test="professorId != null">
+        #{professorId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.bhagava.traineemanage.entity.ClassScheduleExample" resultType="java.lang.Long">
+    select count(*) from class_schedule
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update class_schedule
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.number != null">
+        `number` = #{record.number,jdbcType=INTEGER},
+      </if>
+      <if test="record.classId != null">
+        class_id = #{record.classId,jdbcType=INTEGER},
+      </if>
+      <if test="record.title != null">
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.startDate != null">
+        start_date = #{record.startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.semester != null">
+        semester = #{record.semester,jdbcType=VARCHAR},
+      </if>
+      <if test="record.professorId != null">
+        professor_id = #{record.professorId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update class_schedule
+    set id = #{record.id,jdbcType=INTEGER},
+      `number` = #{record.number,jdbcType=INTEGER},
+      class_id = #{record.classId,jdbcType=INTEGER},
+      title = #{record.title,jdbcType=VARCHAR},
+      start_date = #{record.startDate,jdbcType=TIMESTAMP},
+      semester = #{record.semester,jdbcType=VARCHAR},
+      professor_id = #{record.professorId,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bhagava.traineemanage.entity.ClassSchedule">
+    update class_schedule
+    <set>
+      <if test="number != null">
+        `number` = #{number,jdbcType=INTEGER},
+      </if>
+      <if test="classId != null">
+        class_id = #{classId,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="startDate != null">
+        start_date = #{startDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="semester != null">
+        semester = #{semester,jdbcType=VARCHAR},
+      </if>
+      <if test="professorId != null">
+        professor_id = #{professorId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bhagava.traineemanage.entity.ClassSchedule">
+    update class_schedule
+    set `number` = #{number,jdbcType=INTEGER},
+      class_id = #{classId,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      start_date = #{startDate,jdbcType=TIMESTAMP},
+      semester = #{semester,jdbcType=VARCHAR},
+      professor_id = #{professorId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

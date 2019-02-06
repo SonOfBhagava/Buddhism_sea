@@ -4,14 +4,14 @@ package com.bhagava.common.entity;
  * created by FeiJunhao on ${date}
  */
 public class ResponseEntity {
-    public final static String SUCCESS = "success";
-    public final static String ERROR = "error";
+    public final static String SUCCESS = "SUCCESS";
+    public final static String ERROR = "ERROR";
     private String rflag;
     private Object resData;
     private String msg;
 
     private ResponseEntity(String rflag,Object resData,String msg){
-        this.rflag = this.SUCCESS;
+        this.rflag = rflag;
         this.resData = resData;
         this.msg = msg;
     }
@@ -21,7 +21,7 @@ public class ResponseEntity {
     }
 
     public static ResponseEntity error(String msg){
-        return new ResponseEntity("ERROR","",msg);
+        return new ResponseEntity(ERROR,"",msg);
     }
 
 }

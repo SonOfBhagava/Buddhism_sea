@@ -1,15 +1,14 @@
-package com.bhagava.traineemanage.service;
+package com.bhagava.traineemanage.mapper;
 
 import com.bhagava.traineemanage.entity.Professor;
 import com.bhagava.traineemanage.entity.ProfessorExample;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
+import org.springframework.stereotype.Repository;
 
-/**
- * created by FeiJunhao on ${date}
- */
-public interface ProfessorService {
+@Repository
+public interface ProfessorMapper {
     long countByExample(ProfessorExample example);
 
     int deleteByExample(ProfessorExample example);
@@ -33,4 +32,7 @@ public interface ProfessorService {
     int updateByPrimaryKey(Professor record);
 
     int insertList(List<Professor> list);
+
+    @Select("select name from professor where id = ${ id }")
+    String getProfessorName(Integer id);
 }

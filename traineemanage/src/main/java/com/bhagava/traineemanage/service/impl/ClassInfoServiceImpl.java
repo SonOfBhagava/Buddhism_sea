@@ -39,17 +39,17 @@ public class ClassInfoServiceImpl implements ClassInfoService{
 
     @Override
     public List<ClassInfo> selectByExample(ClassInfoExample example) {
-        return selectByExample(example);
+        return classInfoMapper.selectByExample(example);
     }
 
     @Override
     public ClassInfo selectByPrimaryKey(Integer id) {
-        return selectByPrimaryKey(id);
+        return classInfoMapper.selectByPrimaryKey(id);
     }
 
     @Override
     public int updateByPrimaryKeySelective(ClassInfo record) {
-        return updateByPrimaryKeySelective(record);
+        return classInfoMapper.updateByPrimaryKeySelective(record);
     }
 
     @Override
