@@ -44,12 +44,12 @@ public class ProfessorServiceImpl implements ProfessorService {
 
     @Override
     public List<Professor> selectByExample(ProfessorExample example) {
-        return selectByExample(example);
+        return professorMapper.selectByExample(example);
     }
 
     @Override
     public Professor selectByPrimaryKey(Integer id) {
-        return selectByPrimaryKey(id);
+        return professorMapper.selectByPrimaryKey(id);
     }
 
     @Override

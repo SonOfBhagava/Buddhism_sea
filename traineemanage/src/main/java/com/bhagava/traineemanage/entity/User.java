@@ -1,6 +1,7 @@
 package com.bhagava.traineemanage.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * user
@@ -8,6 +9,8 @@ import java.io.Serializable;
  */
 public class User implements Serializable {
     private Integer id;
+
+    private Integer studentId;
 
     private String name;
 
@@ -46,6 +49,37 @@ public class User implements Serializable {
      */
     private Integer status;
 
+    private ClassInfo classInfo;
+
+    public List<AttendanceRecord> getAttendanceRecordList() {
+        return attendanceRecordList;
+    }
+
+    public void setAttendanceRecordList(List<AttendanceRecord> attendanceRecordList) {
+        this.attendanceRecordList = attendanceRecordList;
+    }
+
+    //考勤记录
+    private List<AttendanceRecord> attendanceRecordList;
+
+    public ClassInfo getClassInfo() {
+        return classInfo;
+    }
+
+    public void setClassInfo(ClassInfo classInfo) {
+        this.classInfo = classInfo;
+    }
+
+    public Role getRoleObj() {
+        return roleObj;
+    }
+
+    public void setRoleObj(Role roleObj) {
+        this.roleObj = roleObj;
+    }
+
+    private Role roleObj;
+
     private static final long serialVersionUID = 1L;
 
     public Integer getId() {
@@ -54,6 +88,14 @@ public class User implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(Integer studentId) {
+        this.studentId = studentId;
     }
 
     public String getName() {
@@ -157,6 +199,7 @@ public class User implements Serializable {
         }
         User other = (User) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
+            && (this.getStudentId() == null ? other.getStudentId() == null : this.getStudentId().equals(other.getStudentId()))
             && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
             && (this.getWeixinAccount() == null ? other.getWeixinAccount() == null : this.getWeixinAccount().equals(other.getWeixinAccount()))
             && (this.getAccount() == null ? other.getAccount() == null : this.getAccount().equals(other.getAccount()))
@@ -175,6 +218,7 @@ public class User implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
+        result = prime * result + ((getStudentId() == null) ? 0 : getStudentId().hashCode());
         result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
         result = prime * result + ((getWeixinAccount() == null) ? 0 : getWeixinAccount().hashCode());
         result = prime * result + ((getAccount() == null) ? 0 : getAccount().hashCode());
@@ -196,6 +240,7 @@ public class User implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
+        sb.append(", studentId=").append(studentId);
         sb.append(", name=").append(name);
         sb.append(", weixinAccount=").append(weixinAccount);
         sb.append(", account=").append(account);

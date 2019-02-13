@@ -4,6 +4,7 @@ import com.bhagava.traineemanage.entity.User;
 import com.bhagava.traineemanage.entity.UserExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -31,4 +32,8 @@ public interface UserMapper {
     int updateByPrimaryKey(User record);
 
     int insertList(List<User> list);
+
+    // 获取当前的组
+    @Select("SELECT `group` from `user` where class_id = #{id} GROUP BY `group`")
+    List<Integer> selectGroup(Integer id);
 }

@@ -63,11 +63,11 @@ public class ClassScheduleServiceImpl implements ClassScheduleService{
 
     @Override
     public int updateByPrimaryKeySelective(ClassSchedule record) {
-        return 0;
+        return classScheduleMapper.updateByPrimaryKeySelective(record);
     }
 
     @Override
     public int updateByPrimaryKey(ClassSchedule record) {
-        return 0;
+        return classScheduleMapper.updateByPrimaryKey(record);
     }
 }

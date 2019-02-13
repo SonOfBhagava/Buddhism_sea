@@ -14,7 +14,7 @@ public class StrUtil {
      * @param list
      * @return 例："[a,b,c,d,e]"
      */
-    public <T> String getArrayStringByList(List<T> list){
+    public static <T>  String getArrayStringByList(List<T> list){
         String str = "[";
         if(list.size() > 0){
             for(int i = 0;i < list.size();i++){
@@ -23,5 +23,11 @@ public class StrUtil {
         }
         str = str.length() > 1 ? str.substring(0,str.length()-1) + "]":"[]";
         return str;
+    }
+
+    public static boolean isNull(String str){
+        if(null == str || "".equals(str))
+            return true;
+         return false;
     }
 }

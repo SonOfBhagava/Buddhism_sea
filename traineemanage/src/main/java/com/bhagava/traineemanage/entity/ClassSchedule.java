@@ -1,5 +1,7 @@
 package com.bhagava.traineemanage.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -19,6 +21,7 @@ public class ClassSchedule implements Serializable {
 
     private String title;
 
+    @DateTimeFormat( pattern = "yyyy-MM-dd" )
     private Date startDate;
 
     public ClassInfo getClassInfo() {
