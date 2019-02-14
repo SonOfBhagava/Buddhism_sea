@@ -48,19 +48,20 @@ public class AttendanceManageController {
         List<ClassInfo> classList = classInfoService.selectByExample(classEx);
         // 查询条件
         UserExample ex = new UserExample();
+        UserExample.Criteria cri = ex.createCriteria();
         // 只显示状态为在读的学员
-        ex.createCriteria().andStatusEqualTo(1);
+        cri.andStatusEqualTo(1);
         // 判断班级筛选
         if(!StrUtil.isNull(classId)){
-            ex.createCriteria().andClassIdEqualTo(Integer.parseInt(classId));
+            cri.andClassIdEqualTo(Integer.parseInt(classId));
         }else {// 默认选取最后录入的处于开班状态中的班级
             classId = String.valueOf(classList.get(classList.size() - 1).getId());
-            ex.createCriteria().andClassIdEqualTo(Integer.parseInt(classId));
+            cri.andClassIdEqualTo(Integer.parseInt(classId));
         }
         // 小组筛选
-        if(!StrUtil.isNull(group))
-            ex.createCriteria().andGroupEqualTo(Integer.parseInt(group));
-
+        if(!StrUtil.isNull(group)){
+            cri.andGroupEqualTo(Integer.parseInt(group));
+        }
         // 获取组集合
         List<Integer> groupList = userService.selectGrroup(Integer.parseInt(classId));
         // 课程筛选
@@ -85,6 +86,7 @@ public class AttendanceManageController {
         map.put("courseList",courseList);
         map.put("groupList",groupList);
         map.put("courseId",courseList.get(courseList.size() - 1).getId());
+        map.put("classId",Integer.parseInt(classId));
         return EntitySwitchUtil.getMapByEntity(ResponseEntity.success(map));
     }
 
