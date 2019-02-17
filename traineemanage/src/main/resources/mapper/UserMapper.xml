@@ -18,6 +18,7 @@
     <association property="classInfo" fetchType="eager" column="class_id" select="com.bhagava.traineemanage.mapper.ClassInfoMapper.selectByPrimaryKey"/>
     <association property="roleObj" fetchType="eager" column="role" select="com.bhagava.traineemanage.mapper.RoleMapper.selectByPrimaryKey"/>
     <collection property="attendanceRecordList" column="id"  fetchType="eager" select="com.bhagava.traineemanage.mapper.AttendanceRecordMapper.selectByUserId" />
+    <collection property="volunteerList" column="id"  fetchType="eager" select="com.bhagava.traineemanage.mapper.VolunteerMapper.selectByUId" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>

@@ -62,6 +62,17 @@ public class User implements Serializable {
     //考勤记录
     private List<AttendanceRecord> attendanceRecordList;
 
+    public List<Volunteer> getVolunteerList() {
+        return volunteerList;
+    }
+
+    public void setVolunteerList(List<Volunteer> volunteerList) {
+        this.volunteerList = volunteerList;
+    }
+
+    //义工记录
+    private List<Volunteer> volunteerList;
+
     public ClassInfo getClassInfo() {
         return classInfo;
     }

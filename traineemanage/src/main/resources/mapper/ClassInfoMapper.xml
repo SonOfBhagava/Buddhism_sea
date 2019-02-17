@@ -5,6 +5,7 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="status" jdbcType="INTEGER" property="status" />
+    <association property="volunteerValidDate" fetchType="eager" column="id" select="com.bhagava.traineemanage.mapper.VolunteerValidDateMapper.selectByClassId"/>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>

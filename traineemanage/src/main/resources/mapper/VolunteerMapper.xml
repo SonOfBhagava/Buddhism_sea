@@ -225,4 +225,8 @@
       `status` = #{status,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <select id="selectByUId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select * from volunteer where u_id = #{id,jdbcType=INTEGER}
+  </select>
 </mapper>

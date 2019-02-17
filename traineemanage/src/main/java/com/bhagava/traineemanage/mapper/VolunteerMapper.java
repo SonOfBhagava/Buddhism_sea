@@ -29,4 +29,6 @@ public interface VolunteerMapper {
     int updateByPrimaryKeySelective(Volunteer record);
 
     int updateByPrimaryKey(Volunteer record);
+
+    List<Volunteer> selectByUId(Integer id);
 }

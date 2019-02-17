@@ -1,6 +1,7 @@
 package com.bhagava.traineemanage.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * class_info
@@ -10,6 +11,17 @@ public class ClassInfo implements Serializable {
     private Integer id;
 
     private String name;
+
+
+    public VolunteerValidDate getVolunteerValidDate() {
+        return volunteerValidDate;
+    }
+
+    public void setVolunteerValidDate(VolunteerValidDate volunteerValidDate) {
+        this.volunteerValidDate = volunteerValidDate;
+    }
+
+    private VolunteerValidDate volunteerValidDate;
 
     /**
      * 班级状态:未开班/开班中/已结业
