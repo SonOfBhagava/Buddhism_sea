@@ -4,17 +4,12 @@ import com.bhagava.common.entity.ResponseEntity;
 import com.bhagava.common.utils.EntitySwitchUtil;
 import com.bhagava.traineemanage.entity.ClassInfo;
 import com.bhagava.traineemanage.entity.ClassInfoExample;
-import com.bhagava.traineemanage.entity.VolunteerValidDate;
-import com.bhagava.traineemanage.mapper.ClassInfoMapper;
 import com.bhagava.traineemanage.service.ClassInfoService;
-import com.bhagava.traineemanage.service.VolunteerValidDateService;
 import com.bhagava.traineemanage.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * created by FeiJunhao on ${date}
@@ -26,8 +21,6 @@ public class ClassManageController {
 
     @Autowired
     private ClassInfoService classInfoService;
-    @Autowired
-    private VolunteerValidDateService volunteerValidDateService;
 
     // 获得所有班级信息查询列表
     @GetMapping("/get_list")
@@ -56,21 +49,12 @@ public class ClassManageController {
     @ResponseBody
     public Object add(ClassInfo classInfo){
         int count = 0;
-        int count2 = 0;
         try{
-            count = classInfoService.insertSelective(classInfo);
+            count = classInfoService.insert(classInfo);
         }catch (Exception e){
             return EntitySwitchUtil.getMapByEntity(ResponseEntity.error(e.toString()));
         }
         if(count == 0)
-            return EntitySwitchUtil.getMapByEntity(ResponseEntity.error("操作失败！"));
-        // 插入义工有效时间
-        try{
-            count2 = volunteerValidDateService.insert(classInfo.getVolunteerValidDate());
-        }catch (Exception e){
-            return EntitySwitchUtil.getMapByEntity(ResponseEntity.error(e.toString()));
-        }
-        if(count2 == 0)
             return EntitySwitchUtil.getMapByEntity(ResponseEntity.error("操作失败！"));
         return EntitySwitchUtil.getMapByEntity(ResponseEntity.success(count));
     }
@@ -96,20 +80,12 @@ public class ClassManageController {
     @ResponseBody
     public Object update(ClassInfo classInfo){
         int count = 0;
-        int count2 = 0;
         try{
             count = classInfoService.updateByPrimaryKey(classInfo);
         }catch (Exception e){
             return EntitySwitchUtil.getMapByEntity(ResponseEntity.error(e.toString()));
         }
         if(count == 0)
-            return EntitySwitchUtil.getMapByEntity(ResponseEntity.error("操作失败！"));
-        try{
-            count2 = volunteerValidDateService.updateByPrimaryKey(classInfo.getVolunteerValidDate());
-        }catch (Exception e){
-            return EntitySwitchUtil.getMapByEntity(ResponseEntity.error(e.toString()));
-        }
-        if(count2 == 0)
             return EntitySwitchUtil.getMapByEntity(ResponseEntity.error("操作失败！"));
         return EntitySwitchUtil.getMapByEntity(ResponseEntity.success(count));
     }

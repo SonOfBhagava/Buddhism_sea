@@ -4,10 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Buddhism_sea.iml" filepath="$PROJECT_DIR$/Buddhism_sea.iml" />
       <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
-      <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
       <module fileurl="file://$PROJECT_DIR$/servicemybatis/servicemybatis.iml" filepath="$PROJECT_DIR$/servicemybatis/servicemybatis.iml" />
-      <module fileurl="file://$PROJECT_DIR$/servicemybatis/servicemybatis.iml" filepath="$PROJECT_DIR$/servicemybatis/servicemybatis.iml" />
-      <module fileurl="file://$PROJECT_DIR$/traineemanage/traineemanage.iml" filepath="$PROJECT_DIR$/traineemanage/traineemanage.iml" />
       <module fileurl="file://$PROJECT_DIR$/traineemanage/traineemanage.iml" filepath="$PROJECT_DIR$/traineemanage/traineemanage.iml" />
     </modules>
   </component>

@@ -4,8 +4,11 @@
   <resultMap id="BaseResultMap" type="com.bhagava.traineemanage.entity.ClassInfo">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="up_start_date" jdbcType="TIMESTAMP" property="upStartDate" />
+    <result column="up_end_date" jdbcType="TIMESTAMP" property="upEndDate" />
+    <result column="down_start_date" jdbcType="TIMESTAMP" property="downStartDate" />
+    <result column="down_end_date" jdbcType="TIMESTAMP" property="downEndDate" />
     <result column="status" jdbcType="INTEGER" property="status" />
-    <association property="volunteerValidDate" fetchType="eager" column="id" select="com.bhagava.traineemanage.mapper.VolunteerValidDateMapper.selectByClassId"/>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -66,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, `name`, `status`
+    id, `name`, up_start_date, up_end_date, down_start_date, down_end_date, `status`
   </sql>
   <select id="selectByExample" parameterType="com.bhagava.traineemanage.entity.ClassInfoExample" resultMap="BaseResultMap">
     select
@@ -107,14 +110,30 @@
     </if>
   </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.bhagava.traineemanage.entity.ClassInfo" useGeneratedKeys="true">
-    insert into class_info (`name`, `status`)
-    values (#{name,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER})
+    insert into class_info (`name`, up_start_date, up_end_date, 
+      down_start_date, down_end_date, `status`
+      )
+    values (#{name,jdbcType=VARCHAR}, #{upStartDate,jdbcType=TIMESTAMP}, #{upEndDate,jdbcType=TIMESTAMP}, 
+      #{downStartDate,jdbcType=TIMESTAMP}, #{downEndDate,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.bhagava.traineemanage.entity.ClassInfo" useGeneratedKeys="true">
     insert into class_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="name != null">
         `name`,
+      </if>
+      <if test="upStartDate != null">
+        up_start_date,
+      </if>
+      <if test="upEndDate != null">
+        up_end_date,
+      </if>
+      <if test="downStartDate != null">
+        down_start_date,
+      </if>
+      <if test="downEndDate != null">
+        down_end_date,
       </if>
       <if test="status != null">
         `status`,
@@ -123,6 +142,18 @@
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="upStartDate != null">
+        #{upStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="upEndDate != null">
+        #{upEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="downStartDate != null">
+        #{downStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="downEndDate != null">
+        #{downEndDate,jdbcType=TIMESTAMP},
       </if>
       <if test="status != null">
         #{status,jdbcType=INTEGER},
@@ -144,6 +175,18 @@
       <if test="record.name != null">
         `name` = #{record.name,jdbcType=VARCHAR},
       </if>
+      <if test="record.upStartDate != null">
+        up_start_date = #{record.upStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.upEndDate != null">
+        up_end_date = #{record.upEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.downStartDate != null">
+        down_start_date = #{record.downStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.downEndDate != null">
+        down_end_date = #{record.downEndDate,jdbcType=TIMESTAMP},
+      </if>
       <if test="record.status != null">
         `status` = #{record.status,jdbcType=INTEGER},
       </if>
@@ -156,6 +199,10 @@
     update class_info
     set id = #{record.id,jdbcType=INTEGER},
       `name` = #{record.name,jdbcType=VARCHAR},
+      up_start_date = #{record.upStartDate,jdbcType=TIMESTAMP},
+      up_end_date = #{record.upEndDate,jdbcType=TIMESTAMP},
+      down_start_date = #{record.downStartDate,jdbcType=TIMESTAMP},
+      down_end_date = #{record.downEndDate,jdbcType=TIMESTAMP},
       `status` = #{record.status,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -167,6 +214,18 @@
       <if test="name != null">
         `name` = #{name,jdbcType=VARCHAR},
       </if>
+      <if test="upStartDate != null">
+        up_start_date = #{upStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="upEndDate != null">
+        up_end_date = #{upEndDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="downStartDate != null">
+        down_start_date = #{downStartDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="downEndDate != null">
+        down_end_date = #{downEndDate,jdbcType=TIMESTAMP},
+      </if>
       <if test="status != null">
         `status` = #{status,jdbcType=INTEGER},
       </if>
@@ -176,6 +235,10 @@
   <update id="updateByPrimaryKey" parameterType="com.bhagava.traineemanage.entity.ClassInfo">
     update class_info
     set `name` = #{name,jdbcType=VARCHAR},
+      up_start_date = #{upStartDate,jdbcType=TIMESTAMP},
+      up_end_date = #{upEndDate,jdbcType=TIMESTAMP},
+      down_start_date = #{downStartDate,jdbcType=TIMESTAMP},
+      down_end_date = #{downEndDate,jdbcType=TIMESTAMP},
       `status` = #{status,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>

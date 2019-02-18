@@ -1,10 +1,10 @@
 package com.bhagava.traineemanage.entity;
 
-import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-public class ClassInfoExample implements Serializable{
+public class ClassInfoExample {
     protected String orderByClause;
 
     protected boolean distinct;
@@ -252,6 +252,246 @@ public class ClassInfoExample implements Serializable{
 
         public Criteria andNameNotBetween(String value1, String value2) {
             addCriterion("`name` not between", value1, value2, "name");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpStartDateIsNull() {
+            addCriterion("up_start_date is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpStartDateIsNotNull() {
+            addCriterion("up_start_date is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpStartDateEqualTo(Date value) {
+            addCriterion("up_start_date =", value, "upStartDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpStartDateNotEqualTo(Date value) {
+            addCriterion("up_start_date <>", value, "upStartDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpStartDateGreaterThan(Date value) {
+            addCriterion("up_start_date >", value, "upStartDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpStartDateGreaterThanOrEqualTo(Date value) {
+            addCriterion("up_start_date >=", value, "upStartDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpStartDateLessThan(Date value) {
+            addCriterion("up_start_date <", value, "upStartDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpStartDateLessThanOrEqualTo(Date value) {
+            addCriterion("up_start_date <=", value, "upStartDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpStartDateIn(List<Date> values) {
+            addCriterion("up_start_date in", values, "upStartDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpStartDateNotIn(List<Date> values) {
+            addCriterion("up_start_date not in", values, "upStartDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpStartDateBetween(Date value1, Date value2) {
+            addCriterion("up_start_date between", value1, value2, "upStartDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpStartDateNotBetween(Date value1, Date value2) {
+            addCriterion("up_start_date not between", value1, value2, "upStartDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpEndDateIsNull() {
+            addCriterion("up_end_date is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpEndDateIsNotNull() {
+            addCriterion("up_end_date is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpEndDateEqualTo(Date value) {
+            addCriterion("up_end_date =", value, "upEndDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpEndDateNotEqualTo(Date value) {
+            addCriterion("up_end_date <>", value, "upEndDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpEndDateGreaterThan(Date value) {
+            addCriterion("up_end_date >", value, "upEndDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpEndDateGreaterThanOrEqualTo(Date value) {
+            addCriterion("up_end_date >=", value, "upEndDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpEndDateLessThan(Date value) {
+            addCriterion("up_end_date <", value, "upEndDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpEndDateLessThanOrEqualTo(Date value) {
+            addCriterion("up_end_date <=", value, "upEndDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpEndDateIn(List<Date> values) {
+            addCriterion("up_end_date in", values, "upEndDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpEndDateNotIn(List<Date> values) {
+            addCriterion("up_end_date not in", values, "upEndDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpEndDateBetween(Date value1, Date value2) {
+            addCriterion("up_end_date between", value1, value2, "upEndDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andUpEndDateNotBetween(Date value1, Date value2) {
+            addCriterion("up_end_date not between", value1, value2, "upEndDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andDownStartDateIsNull() {
+            addCriterion("down_start_date is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDownStartDateIsNotNull() {
+            addCriterion("down_start_date is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDownStartDateEqualTo(Date value) {
+            addCriterion("down_start_date =", value, "downStartDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andDownStartDateNotEqualTo(Date value) {
+            addCriterion("down_start_date <>", value, "downStartDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andDownStartDateGreaterThan(Date value) {
+            addCriterion("down_start_date >", value, "downStartDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andDownStartDateGreaterThanOrEqualTo(Date value) {
+            addCriterion("down_start_date >=", value, "downStartDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andDownStartDateLessThan(Date value) {
+            addCriterion("down_start_date <", value, "downStartDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andDownStartDateLessThanOrEqualTo(Date value) {
+            addCriterion("down_start_date <=", value, "downStartDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andDownStartDateIn(List<Date> values) {
+            addCriterion("down_start_date in", values, "downStartDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andDownStartDateNotIn(List<Date> values) {
+            addCriterion("down_start_date not in", values, "downStartDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andDownStartDateBetween(Date value1, Date value2) {
+            addCriterion("down_start_date between", value1, value2, "downStartDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andDownStartDateNotBetween(Date value1, Date value2) {
+            addCriterion("down_start_date not between", value1, value2, "downStartDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andDownEndDateIsNull() {
+            addCriterion("down_end_date is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDownEndDateIsNotNull() {
+            addCriterion("down_end_date is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDownEndDateEqualTo(Date value) {
+            addCriterion("down_end_date =", value, "downEndDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andDownEndDateNotEqualTo(Date value) {
+            addCriterion("down_end_date <>", value, "downEndDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andDownEndDateGreaterThan(Date value) {
+            addCriterion("down_end_date >", value, "downEndDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andDownEndDateGreaterThanOrEqualTo(Date value) {
+            addCriterion("down_end_date >=", value, "downEndDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andDownEndDateLessThan(Date value) {
+            addCriterion("down_end_date <", value, "downEndDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andDownEndDateLessThanOrEqualTo(Date value) {
+            addCriterion("down_end_date <=", value, "downEndDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andDownEndDateIn(List<Date> values) {
+            addCriterion("down_end_date in", values, "downEndDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andDownEndDateNotIn(List<Date> values) {
+            addCriterion("down_end_date not in", values, "downEndDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andDownEndDateBetween(Date value1, Date value2) {
+            addCriterion("down_end_date between", value1, value2, "downEndDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andDownEndDateNotBetween(Date value1, Date value2) {
+            addCriterion("down_end_date not between", value1, value2, "downEndDate");
             return (Criteria) this;
         }
 

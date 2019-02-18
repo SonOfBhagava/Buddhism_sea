@@ -8,7 +8,6 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Buddhism_sea" />
         <module name="common" />
-        <module name="mybatis" />
         <module name="servicemybatis" />
         <module name="traineemanage" />
       </profile>
@@ -16,7 +15,6 @@
     <bytecodeTargetLevel>
       <module name="Buddhism_sea" target="1.5" />
       <module name="common" target="1.8" />
-      <module name="mybatis" target="1.8" />
       <module name="servicemybatis" target="1.8" />
       <module name="traineemanage" target="1.8" />
     </bytecodeTargetLevel>

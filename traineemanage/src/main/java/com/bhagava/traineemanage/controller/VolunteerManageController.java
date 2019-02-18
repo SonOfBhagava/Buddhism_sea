@@ -40,7 +40,10 @@ public class VolunteerManageController {
         Map<String,Object> map = null;
         // 获取班级信息集合
         ClassInfoExample classEx = new ClassInfoExample();
-        classEx.createCriteria().andStatusEqualTo(1);
+        ClassInfoExample.Criteria classCri1 = classEx.createCriteria();
+        ClassInfoExample.Criteria classCri2 = classEx.createCriteria();
+        classCri1.andStatusEqualTo(1);
+        classCri2.andStatusEqualTo(2);
         List<ClassInfo> classList = classInfoService.selectByExample(classEx);
         // 查询条件
         UserExample ex = new UserExample();
