@@ -36,10 +36,11 @@ public class CourseManageController {
         Map<String,Object> map = null;
         List<ClassSchedule> list = null;
         ClassScheduleExample ex = new ClassScheduleExample();
+        ClassScheduleExample.Criteria cri = ex.createCriteria();
         if(StrUtil.isNull(classId)){
-            ex.createCriteria().andClassIdEqualTo(classList.get(classList.size()-1).getId());
+            cri.andClassIdEqualTo(classList.get(classList.size()-1).getId());
         }else {
-            ex.createCriteria().andClassIdEqualTo(Integer.parseInt(classId));
+            cri.andClassIdEqualTo(Integer.parseInt(classId));
         }
         long count = classScheduleService.countByExample(ex);
         ex.setLimit(limit);

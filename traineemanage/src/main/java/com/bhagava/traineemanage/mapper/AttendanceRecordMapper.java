@@ -5,9 +5,7 @@ import com.bhagava.traineemanage.entity.AttendanceRecordExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
-import org.springframework.stereotype.Repository;
 
-@Repository
 public interface AttendanceRecordMapper {
     long countByExample(AttendanceRecordExample example);
 
@@ -31,7 +29,6 @@ public interface AttendanceRecordMapper {
 
     int updateByPrimaryKey(AttendanceRecord record);
 
-    // 根据用户Id查询所有记录
-//    @Select("SELECT * from attendance_record where u_id = ${id}")
+    @Select("select * from attendance_record where u_id = #{id}")
     List<AttendanceRecord> selectByUserId(Integer id);
 }

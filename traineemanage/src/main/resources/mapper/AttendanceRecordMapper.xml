@@ -5,8 +5,6 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="u_id" jdbcType="INTEGER" property="uId" />
     <result column="class_schedule_id" jdbcType="INTEGER" property="classScheduleId" />
-    <result column="is_ask_for_leave" jdbcType="INTEGER" property="isAskForLeave" />
-    <result column="is_cancel_leave" jdbcType="INTEGER" property="isCancelLeave" />
     <result column="status" jdbcType="INTEGER" property="status" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -68,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, u_id, class_schedule_id, is_ask_for_leave, is_cancel_leave, `status`
+    id, u_id, class_schedule_id, `status`
   </sql>
   <select id="selectByExample" parameterType="com.bhagava.traineemanage.entity.AttendanceRecordExample" resultMap="BaseResultMap">
     select
@@ -109,10 +107,10 @@
     </if>
   </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.bhagava.traineemanage.entity.AttendanceRecord" useGeneratedKeys="true">
-    insert into attendance_record (u_id, class_schedule_id, is_ask_for_leave, 
-      is_cancel_leave, `status`)
-    values (#{uId,jdbcType=INTEGER}, #{classScheduleId,jdbcType=INTEGER}, #{isAskForLeave,jdbcType=INTEGER}, 
-      #{isCancelLeave,jdbcType=INTEGER}, #{status,jdbcType=INTEGER})
+    insert into attendance_record (u_id, class_schedule_id, `status`
+      )
+    values (#{uId,jdbcType=INTEGER}, #{classScheduleId,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.bhagava.traineemanage.entity.AttendanceRecord" useGeneratedKeys="true">
     insert into attendance_record
@@ -122,12 +120,6 @@
       </if>
       <if test="classScheduleId != null">
         class_schedule_id,
-      </if>
-      <if test="isAskForLeave != null">
-        is_ask_for_leave,
-      </if>
-      <if test="isCancelLeave != null">
-        is_cancel_leave,
       </if>
       <if test="status != null">
         `status`,
@@ -139,12 +131,6 @@
       </if>
       <if test="classScheduleId != null">
         #{classScheduleId,jdbcType=INTEGER},
-      </if>
-      <if test="isAskForLeave != null">
-        #{isAskForLeave,jdbcType=INTEGER},
-      </if>
-      <if test="isCancelLeave != null">
-        #{isCancelLeave,jdbcType=INTEGER},
       </if>
       <if test="status != null">
         #{status,jdbcType=INTEGER},
@@ -169,12 +155,6 @@
       <if test="record.classScheduleId != null">
         class_schedule_id = #{record.classScheduleId,jdbcType=INTEGER},
       </if>
-      <if test="record.isAskForLeave != null">
-        is_ask_for_leave = #{record.isAskForLeave,jdbcType=INTEGER},
-      </if>
-      <if test="record.isCancelLeave != null">
-        is_cancel_leave = #{record.isCancelLeave,jdbcType=INTEGER},
-      </if>
       <if test="record.status != null">
         `status` = #{record.status,jdbcType=INTEGER},
       </if>
@@ -188,8 +168,6 @@
     set id = #{record.id,jdbcType=INTEGER},
       u_id = #{record.uId,jdbcType=INTEGER},
       class_schedule_id = #{record.classScheduleId,jdbcType=INTEGER},
-      is_ask_for_leave = #{record.isAskForLeave,jdbcType=INTEGER},
-      is_cancel_leave = #{record.isCancelLeave,jdbcType=INTEGER},
       `status` = #{record.status,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -204,12 +182,6 @@
       <if test="classScheduleId != null">
         class_schedule_id = #{classScheduleId,jdbcType=INTEGER},
       </if>
-      <if test="isAskForLeave != null">
-        is_ask_for_leave = #{isAskForLeave,jdbcType=INTEGER},
-      </if>
-      <if test="isCancelLeave != null">
-        is_cancel_leave = #{isCancelLeave,jdbcType=INTEGER},
-      </if>
       <if test="status != null">
         `status` = #{status,jdbcType=INTEGER},
       </if>
@@ -220,13 +192,7 @@
     update attendance_record
     set u_id = #{uId,jdbcType=INTEGER},
       class_schedule_id = #{classScheduleId,jdbcType=INTEGER},
-      is_ask_for_leave = #{isAskForLeave,jdbcType=INTEGER},
-      is_cancel_leave = #{isCancelLeave,jdbcType=INTEGER},
       `status` = #{status,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
-
-  <select id="selectByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    SELECT * from attendance_record where u_id = #{id}
-  </select>
 </mapper>

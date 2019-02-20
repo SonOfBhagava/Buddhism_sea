@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/wenxun?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true
+    url: jdbc:mysql://192.168.2.130:3306/wenxun?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true
     username: root
-    password: jf456987
+    password: act10000
     driver-class-name: com.mysql.cj.jdbc.Driver
     druid:
       initial-size: 5

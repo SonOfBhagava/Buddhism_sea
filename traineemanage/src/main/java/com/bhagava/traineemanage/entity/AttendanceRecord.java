@@ -17,17 +17,7 @@ public class AttendanceRecord implements Serializable {
     private Integer classScheduleId;
 
     /**
-     * 是否请假
-     */
-    private Integer isAskForLeave;
-
-    /**
-     * 是否销假
-     */
-    private Integer isCancelLeave;
-
-    /**
-     * 是否生效：0否/1是
+     * 是否生效：0缺勤/1迟到/2请假未销假/3请假已销假
      */
     private Integer status;
 
@@ -57,22 +47,6 @@ public class AttendanceRecord implements Serializable {
         this.classScheduleId = classScheduleId;
     }
 
-    public Integer getIsAskForLeave() {
-        return isAskForLeave;
-    }
-
-    public void setIsAskForLeave(Integer isAskForLeave) {
-        this.isAskForLeave = isAskForLeave;
-    }
-
-    public Integer getIsCancelLeave() {
-        return isCancelLeave;
-    }
-
-    public void setIsCancelLeave(Integer isCancelLeave) {
-        this.isCancelLeave = isCancelLeave;
-    }
-
     public Integer getStatus() {
         return status;
     }
@@ -96,8 +70,6 @@ public class AttendanceRecord implements Serializable {
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
             && (this.getuId() == null ? other.getuId() == null : this.getuId().equals(other.getuId()))
             && (this.getClassScheduleId() == null ? other.getClassScheduleId() == null : this.getClassScheduleId().equals(other.getClassScheduleId()))
-            && (this.getIsAskForLeave() == null ? other.getIsAskForLeave() == null : this.getIsAskForLeave().equals(other.getIsAskForLeave()))
-            && (this.getIsCancelLeave() == null ? other.getIsCancelLeave() == null : this.getIsCancelLeave().equals(other.getIsCancelLeave()))
             && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()));
     }
 
@@ -108,8 +80,6 @@ public class AttendanceRecord implements Serializable {
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
         result = prime * result + ((getuId() == null) ? 0 : getuId().hashCode());
         result = prime * result + ((getClassScheduleId() == null) ? 0 : getClassScheduleId().hashCode());
-        result = prime * result + ((getIsAskForLeave() == null) ? 0 : getIsAskForLeave().hashCode());
-        result = prime * result + ((getIsCancelLeave() == null) ? 0 : getIsCancelLeave().hashCode());
         result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
         return result;
     }
@@ -123,8 +93,6 @@ public class AttendanceRecord implements Serializable {
         sb.append(", id=").append(id);
         sb.append(", uId=").append(uId);
         sb.append(", classScheduleId=").append(classScheduleId);
-        sb.append(", isAskForLeave=").append(isAskForLeave);
-        sb.append(", isCancelLeave=").append(isCancelLeave);
         sb.append(", status=").append(status);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");

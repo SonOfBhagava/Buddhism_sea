@@ -101,7 +101,7 @@ public class AttendanceManageController {
         }
         if(count == 0)
             return EntitySwitchUtil.getMapByEntity(ResponseEntity.error("操作失败！"));
-        return EntitySwitchUtil.getMapByEntity(ResponseEntity.success(count));
+        return ResponseEntity.success(count);
     }
 
     // 删除信息
@@ -116,7 +116,7 @@ public class AttendanceManageController {
         }
         if(count == 0)
             return EntitySwitchUtil.getMapByEntity(ResponseEntity.error("操作失败！"));
-        return EntitySwitchUtil.getMapByEntity(ResponseEntity.success(count));
+        return ResponseEntity.success(count);
     }
 
     // 修改信息
@@ -131,6 +131,55 @@ public class AttendanceManageController {
         }
         if(count == 0)
             return EntitySwitchUtil.getMapByEntity(ResponseEntity.error("操作失败！"));
-        return EntitySwitchUtil.getMapByEntity(ResponseEntity.success(count));
+        return ResponseEntity.success(count);
+    }
+
+    // 修改信息
+    @PostMapping("/getCourses")
+    @ResponseBody
+    public Object getCourses(int limit, long offset, String classId, String group){
+        String semester = "";
+        // 用户
+        UserExample userEx = new UserExample();
+        UserExample.Criteria userCri = userEx.createCriteria();
+        userCri.andStatusEqualTo(1);
+        // 班级
+        ClassInfoExample classEx = new ClassInfoExample();
+        ClassInfoExample.Criteria classCri1 = classEx.createCriteria();
+        ClassInfoExample.Criteria classCri2 = classEx.createCriteria();
+        classCri1.andStatusEqualTo(1);
+        classCri2.andStatusEqualTo(2);
+        classEx.or(classCri2);
+        List<ClassInfo> classList = classInfoService.selectByExample(classEx);
+        // 课程
+        ClassScheduleExample courseEx = new ClassScheduleExample();
+        ClassScheduleExample.Criteria courseCri = courseEx.createCriteria();
+        if(StrUtil.isNull(classId)){
+            classId = String.valueOf(classList.get(classList.size() - 1).getId());
+        }
+        if(!StrUtil.isNull(group)){
+            userCri.andGroupEqualTo(Integer.parseInt(group));
+        }
+        userCri.andClassIdEqualTo(Integer.parseInt(classId));
+        courseCri.andClassIdEqualTo(Integer.parseInt(classId));
+        semester = classInfoService.selectByPrimaryKey(Integer.parseInt(classId)).getStatus() == 1 ? "up" : "down";
+        courseCri.andSemesterEqualTo(semester);
+        // 获取总数
+        long count = userService.countByExample(userEx);
+        // 分页
+        userEx.setLimit(limit);
+        userEx.setOffset(offset);
+        List<User> userList = userService.selectByExample(userEx);
+        // 获取组集合
+        List<Integer> groupList = userService.selectGrroup(Integer.parseInt(classId));
+        List<ClassSchedule> courseList = classScheduleService.selectByExample(courseEx);
+        Map<String,Object> map = null;
+        map = Util.getReturnMap(userList,count);
+        map.put("classList",classList);
+        map.put("courseList",courseList);
+        map.put("semester",semester);
+        map.put("classId",classId);
+        map.put("groupList",groupList);
+        return ResponseEntity.success(map);
     }
 }
