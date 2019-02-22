@@ -244,123 +244,63 @@ public class ExamResultExample {
             return (Criteria) this;
         }
 
-        public Criteria andClassIdIsNull() {
-            addCriterion("class_id is null");
+        public Criteria andClassExamIdIsNull() {
+            addCriterion("class_exam_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andClassIdIsNotNull() {
-            addCriterion("class_id is not null");
+        public Criteria andClassExamIdIsNotNull() {
+            addCriterion("class_exam_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andClassIdEqualTo(Integer value) {
-            addCriterion("class_id =", value, "classId");
+        public Criteria andClassExamIdEqualTo(Integer value) {
+            addCriterion("class_exam_id =", value, "classExamId");
             return (Criteria) this;
         }
 
-        public Criteria andClassIdNotEqualTo(Integer value) {
-            addCriterion("class_id <>", value, "classId");
+        public Criteria andClassExamIdNotEqualTo(Integer value) {
+            addCriterion("class_exam_id <>", value, "classExamId");
             return (Criteria) this;
         }
 
-        public Criteria andClassIdGreaterThan(Integer value) {
-            addCriterion("class_id >", value, "classId");
+        public Criteria andClassExamIdGreaterThan(Integer value) {
+            addCriterion("class_exam_id >", value, "classExamId");
             return (Criteria) this;
         }
 
-        public Criteria andClassIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("class_id >=", value, "classId");
+        public Criteria andClassExamIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("class_exam_id >=", value, "classExamId");
             return (Criteria) this;
         }
 
-        public Criteria andClassIdLessThan(Integer value) {
-            addCriterion("class_id <", value, "classId");
+        public Criteria andClassExamIdLessThan(Integer value) {
+            addCriterion("class_exam_id <", value, "classExamId");
             return (Criteria) this;
         }
 
-        public Criteria andClassIdLessThanOrEqualTo(Integer value) {
-            addCriterion("class_id <=", value, "classId");
+        public Criteria andClassExamIdLessThanOrEqualTo(Integer value) {
+            addCriterion("class_exam_id <=", value, "classExamId");
             return (Criteria) this;
         }
 
-        public Criteria andClassIdIn(List<Integer> values) {
-            addCriterion("class_id in", values, "classId");
+        public Criteria andClassExamIdIn(List<Integer> values) {
+            addCriterion("class_exam_id in", values, "classExamId");
             return (Criteria) this;
         }
 
-        public Criteria andClassIdNotIn(List<Integer> values) {
-            addCriterion("class_id not in", values, "classId");
+        public Criteria andClassExamIdNotIn(List<Integer> values) {
+            addCriterion("class_exam_id not in", values, "classExamId");
             return (Criteria) this;
         }
 
-        public Criteria andClassIdBetween(Integer value1, Integer value2) {
-            addCriterion("class_id between", value1, value2, "classId");
+        public Criteria andClassExamIdBetween(Integer value1, Integer value2) {
+            addCriterion("class_exam_id between", value1, value2, "classExamId");
             return (Criteria) this;
         }
 
-        public Criteria andClassIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("class_id not between", value1, value2, "classId");
-            return (Criteria) this;
-        }
-
-        public Criteria andExamClassifyIdIsNull() {
-            addCriterion("exam_classify_id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andExamClassifyIdIsNotNull() {
-            addCriterion("exam_classify_id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andExamClassifyIdEqualTo(Integer value) {
-            addCriterion("exam_classify_id =", value, "examClassifyId");
-            return (Criteria) this;
-        }
-
-        public Criteria andExamClassifyIdNotEqualTo(Integer value) {
-            addCriterion("exam_classify_id <>", value, "examClassifyId");
-            return (Criteria) this;
-        }
-
-        public Criteria andExamClassifyIdGreaterThan(Integer value) {
-            addCriterion("exam_classify_id >", value, "examClassifyId");
-            return (Criteria) this;
-        }
-
-        public Criteria andExamClassifyIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("exam_classify_id >=", value, "examClassifyId");
-            return (Criteria) this;
-        }
-
-        public Criteria andExamClassifyIdLessThan(Integer value) {
-            addCriterion("exam_classify_id <", value, "examClassifyId");
-            return (Criteria) this;
-        }
-
-        public Criteria andExamClassifyIdLessThanOrEqualTo(Integer value) {
-            addCriterion("exam_classify_id <=", value, "examClassifyId");
-            return (Criteria) this;
-        }
-
-        public Criteria andExamClassifyIdIn(List<Integer> values) {
-            addCriterion("exam_classify_id in", values, "examClassifyId");
-            return (Criteria) this;
-        }
-
-        public Criteria andExamClassifyIdNotIn(List<Integer> values) {
-            addCriterion("exam_classify_id not in", values, "examClassifyId");
-            return (Criteria) this;
-        }
-
-        public Criteria andExamClassifyIdBetween(Integer value1, Integer value2) {
-            addCriterion("exam_classify_id between", value1, value2, "examClassifyId");
-            return (Criteria) this;
-        }
-
-        public Criteria andExamClassifyIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("exam_classify_id not between", value1, value2, "examClassifyId");
+        public Criteria andClassExamIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("class_exam_id not between", value1, value2, "classExamId");
             return (Criteria) this;
         }
 

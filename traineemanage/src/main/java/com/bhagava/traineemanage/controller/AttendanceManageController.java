@@ -44,7 +44,11 @@ public class AttendanceManageController {
         courseEx.createCriteria().andStartDateLessThanOrEqualTo(new Date());
         // 获取班级信息集合
         ClassInfoExample classEx = new ClassInfoExample();
-        classEx.createCriteria().andStatusEqualTo(1);
+        ClassInfoExample.Criteria classCri1 = classEx.createCriteria();
+        ClassInfoExample.Criteria classCri2 = classEx.createCriteria();
+        classCri1.andStatusEqualTo(1);
+        classCri2.andStatusEqualTo(2);
+        classEx.or(classCri2);
         List<ClassInfo> classList = classInfoService.selectByExample(classEx);
         // 查询条件
         UserExample ex = new UserExample();

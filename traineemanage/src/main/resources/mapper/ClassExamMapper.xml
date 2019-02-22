@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.bhagava.traineemanage.mapper.ExamResultMapper">
-  <resultMap id="BaseResultMap" type="com.bhagava.traineemanage.entity.ExamResult">
+<mapper namespace="com.bhagava.traineemanage.mapper.ClassExamMapper">
+  <resultMap id="BaseResultMap" type="com.bhagava.traineemanage.entity.ClassExam">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="u_id" jdbcType="INTEGER" property="uId" />
-    <result column="class_exam_id" jdbcType="INTEGER" property="classExamId" />
-    <result column="score" jdbcType="INTEGER" property="score" />
+    <result column="class_id" jdbcType="INTEGER" property="classId" />
+    <result column="semester" jdbcType="VARCHAR" property="semester" />
+    <result column="exam_classify_id" jdbcType="INTEGER" property="examClassifyId" />
+    <association property="examClassify" fetchType="eager" column="exam_classify_id" select="com.bhagava.traineemanage.mapper.ExamClassifyMapper.selectByPrimaryKey"/>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -66,15 +67,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, u_id, class_exam_id, score
+    id, class_id, semester, exam_classify_id
   </sql>
-  <select id="selectByExample" parameterType="com.bhagava.traineemanage.entity.ExamResultExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.bhagava.traineemanage.entity.ClassExamExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from exam_result
+    from class_exam
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -93,70 +94,70 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from exam_result
+    from class_exam
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from exam_result
+    delete from class_exam
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.bhagava.traineemanage.entity.ExamResultExample">
-    delete from exam_result
+  <delete id="deleteByExample" parameterType="com.bhagava.traineemanage.entity.ClassExamExample">
+    delete from class_exam
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.bhagava.traineemanage.entity.ExamResult" useGeneratedKeys="true">
-    insert into exam_result (u_id, class_exam_id, score
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.bhagava.traineemanage.entity.ClassExam" useGeneratedKeys="true">
+    insert into class_exam (class_id, semester, exam_classify_id
       )
-    values (#{uId,jdbcType=INTEGER}, #{classExamId,jdbcType=INTEGER}, #{score,jdbcType=INTEGER}
+    values (#{classId,jdbcType=INTEGER}, #{semester,jdbcType=VARCHAR}, #{examClassifyId,jdbcType=INTEGER}
       )
   </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.bhagava.traineemanage.entity.ExamResult" useGeneratedKeys="true">
-    insert into exam_result
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.bhagava.traineemanage.entity.ClassExam" useGeneratedKeys="true">
+    insert into class_exam
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="uId != null">
-        u_id,
+      <if test="classId != null">
+        class_id,
       </if>
-      <if test="classExamId != null">
-        class_exam_id,
+      <if test="semester != null">
+        semester,
       </if>
-      <if test="score != null">
-        score,
+      <if test="examClassifyId != null">
+        exam_classify_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="uId != null">
-        #{uId,jdbcType=INTEGER},
+      <if test="classId != null">
+        #{classId,jdbcType=INTEGER},
       </if>
-      <if test="classExamId != null">
-        #{classExamId,jdbcType=INTEGER},
+      <if test="semester != null">
+        #{semester,jdbcType=VARCHAR},
       </if>
-      <if test="score != null">
-        #{score,jdbcType=INTEGER},
+      <if test="examClassifyId != null">
+        #{examClassifyId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.bhagava.traineemanage.entity.ExamResultExample" resultType="java.lang.Long">
-    select count(*) from exam_result
+  <select id="countByExample" parameterType="com.bhagava.traineemanage.entity.ClassExamExample" resultType="java.lang.Long">
+    select count(*) from class_exam
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update exam_result
+    update class_exam
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.uId != null">
-        u_id = #{record.uId,jdbcType=INTEGER},
+      <if test="record.classId != null">
+        class_id = #{record.classId,jdbcType=INTEGER},
       </if>
-      <if test="record.classExamId != null">
-        class_exam_id = #{record.classExamId,jdbcType=INTEGER},
+      <if test="record.semester != null">
+        semester = #{record.semester,jdbcType=VARCHAR},
       </if>
-      <if test="record.score != null">
-        score = #{record.score,jdbcType=INTEGER},
+      <if test="record.examClassifyId != null">
+        exam_classify_id = #{record.examClassifyId,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null">
@@ -164,35 +165,35 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update exam_result
+    update class_exam
     set id = #{record.id,jdbcType=INTEGER},
-      u_id = #{record.uId,jdbcType=INTEGER},
-      class_exam_id = #{record.classExamId,jdbcType=INTEGER},
-      score = #{record.score,jdbcType=INTEGER}
+      class_id = #{record.classId,jdbcType=INTEGER},
+      semester = #{record.semester,jdbcType=VARCHAR},
+      exam_classify_id = #{record.examClassifyId,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.bhagava.traineemanage.entity.ExamResult">
-    update exam_result
+  <update id="updateByPrimaryKeySelective" parameterType="com.bhagava.traineemanage.entity.ClassExam">
+    update class_exam
     <set>
-      <if test="uId != null">
-        u_id = #{uId,jdbcType=INTEGER},
+      <if test="classId != null">
+        class_id = #{classId,jdbcType=INTEGER},
       </if>
-      <if test="classExamId != null">
-        class_exam_id = #{classExamId,jdbcType=INTEGER},
+      <if test="semester != null">
+        semester = #{semester,jdbcType=VARCHAR},
       </if>
-      <if test="score != null">
-        score = #{score,jdbcType=INTEGER},
+      <if test="examClassifyId != null">
+        exam_classify_id = #{examClassifyId,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.bhagava.traineemanage.entity.ExamResult">
-    update exam_result
-    set u_id = #{uId,jdbcType=INTEGER},
-      class_exam_id = #{classExamId,jdbcType=INTEGER},
-      score = #{score,jdbcType=INTEGER}
+  <update id="updateByPrimaryKey" parameterType="com.bhagava.traineemanage.entity.ClassExam">
+    update class_exam
+    set class_id = #{classId,jdbcType=INTEGER},
+      semester = #{semester,jdbcType=VARCHAR},
+      exam_classify_id = #{examClassifyId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

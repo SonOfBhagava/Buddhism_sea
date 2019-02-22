@@ -11,10 +11,7 @@ import com.bhagava.traineemanage.service.VolunteerService;
 import com.bhagava.traineemanage.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
@@ -24,6 +21,7 @@ import java.util.Map;
  * created by FeiJunhao on ${date}
  */
 @Controller
+@CrossOrigin
 @RequestMapping("/volunteer")
 public class VolunteerManageController {
     @Autowired
@@ -44,6 +42,7 @@ public class VolunteerManageController {
         ClassInfoExample.Criteria classCri2 = classEx.createCriteria();
         classCri1.andStatusEqualTo(1);
         classCri2.andStatusEqualTo(2);
+        classEx.or(classCri2);
         List<ClassInfo> classList = classInfoService.selectByExample(classEx);
         // 查询条件
         UserExample ex = new UserExample();
@@ -81,7 +80,7 @@ public class VolunteerManageController {
         map.put("classList",classList);
         map.put("groupList",groupList);
         map.put("classId",Integer.parseInt(classId));
-        return EntitySwitchUtil.getMapByEntity(ResponseEntity.success(map));
+        return ResponseEntity.success(map);
     }
 
     @PostMapping("/add")

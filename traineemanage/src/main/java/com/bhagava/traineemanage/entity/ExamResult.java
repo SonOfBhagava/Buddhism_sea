@@ -11,9 +11,7 @@ public class ExamResult implements Serializable {
 
     private Integer uId;
 
-    private Integer classId;
-
-    private Integer examClassifyId;
+    private Integer classExamId;
 
     private Integer score;
 
@@ -35,20 +33,12 @@ public class ExamResult implements Serializable {
         this.uId = uId;
     }
 
-    public Integer getClassId() {
-        return classId;
+    public Integer getClassExamId() {
+        return classExamId;
     }
 
-    public void setClassId(Integer classId) {
-        this.classId = classId;
-    }
-
-    public Integer getExamClassifyId() {
-        return examClassifyId;
-    }
-
-    public void setExamClassifyId(Integer examClassifyId) {
-        this.examClassifyId = examClassifyId;
+    public void setClassExamId(Integer classExamId) {
+        this.classExamId = classExamId;
     }
 
     public Integer getScore() {
@@ -73,8 +63,7 @@ public class ExamResult implements Serializable {
         ExamResult other = (ExamResult) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
             && (this.getuId() == null ? other.getuId() == null : this.getuId().equals(other.getuId()))
-            && (this.getClassId() == null ? other.getClassId() == null : this.getClassId().equals(other.getClassId()))
-            && (this.getExamClassifyId() == null ? other.getExamClassifyId() == null : this.getExamClassifyId().equals(other.getExamClassifyId()))
+            && (this.getClassExamId() == null ? other.getClassExamId() == null : this.getClassExamId().equals(other.getClassExamId()))
             && (this.getScore() == null ? other.getScore() == null : this.getScore().equals(other.getScore()));
     }
 
@@ -84,8 +73,7 @@ public class ExamResult implements Serializable {
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
         result = prime * result + ((getuId() == null) ? 0 : getuId().hashCode());
-        result = prime * result + ((getClassId() == null) ? 0 : getClassId().hashCode());
-        result = prime * result + ((getExamClassifyId() == null) ? 0 : getExamClassifyId().hashCode());
+        result = prime * result + ((getClassExamId() == null) ? 0 : getClassExamId().hashCode());
         result = prime * result + ((getScore() == null) ? 0 : getScore().hashCode());
         return result;
     }
@@ -98,8 +86,7 @@ public class ExamResult implements Serializable {
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
         sb.append(", uId=").append(uId);
-        sb.append(", classId=").append(classId);
-        sb.append(", examClassifyId=").append(examClassifyId);
+        sb.append(", classExamId=").append(classExamId);
         sb.append(", score=").append(score);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");

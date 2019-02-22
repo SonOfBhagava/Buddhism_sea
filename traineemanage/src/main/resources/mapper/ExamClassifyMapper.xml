@@ -3,8 +3,10 @@
 <mapper namespace="com.bhagava.traineemanage.mapper.ExamClassifyMapper">
   <resultMap id="BaseResultMap" type="com.bhagava.traineemanage.entity.ExamClassify">
     <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="content" jdbcType="VARCHAR" property="content" />
-    <result column="semester" jdbcType="VARCHAR" property="semester" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.bhagava.traineemanage.entity.ExamClassify">
+    <result column="comment" jdbcType="LONGVARCHAR" property="comment" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -65,8 +67,35 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, content, semester
+    id, title
   </sql>
+  <sql id="Blob_Column_List">
+    `comment`
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.bhagava.traineemanage.entity.ExamClassifyExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from exam_classify
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+    <if test="limit != null">
+      <if test="offset != null">
+        limit ${offset}, ${limit}
+      </if>
+      <if test="offset == null">
+        limit ${limit}
+      </if>
+    </if>
+  </select>
   <select id="selectByExample" parameterType="com.bhagava.traineemanage.entity.ExamClassifyExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
@@ -89,9 +118,11 @@
       </if>
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
     from exam_classify
     where id = #{id,jdbcType=INTEGER}
   </select>
@@ -106,25 +137,25 @@
     </if>
   </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.bhagava.traineemanage.entity.ExamClassify" useGeneratedKeys="true">
-    insert into exam_classify (content, semester)
-    values (#{content,jdbcType=VARCHAR}, #{semester,jdbcType=VARCHAR})
+    insert into exam_classify (title, `comment`)
+    values (#{title,jdbcType=VARCHAR}, #{comment,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.bhagava.traineemanage.entity.ExamClassify" useGeneratedKeys="true">
     insert into exam_classify
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="content != null">
-        content,
+      <if test="title != null">
+        title,
       </if>
-      <if test="semester != null">
-        semester,
+      <if test="comment != null">
+        `comment`,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="content != null">
-        #{content,jdbcType=VARCHAR},
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
       </if>
-      <if test="semester != null">
-        #{semester,jdbcType=VARCHAR},
+      <if test="comment != null">
+        #{comment,jdbcType=LONGVARCHAR},
       </if>
     </trim>
   </insert>
@@ -140,13 +171,22 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.content != null">
-        content = #{record.content,jdbcType=VARCHAR},
+      <if test="record.title != null">
+        title = #{record.title,jdbcType=VARCHAR},
       </if>
-      <if test="record.semester != null">
-        semester = #{record.semester,jdbcType=VARCHAR},
+      <if test="record.comment != null">
+        `comment` = #{record.comment,jdbcType=LONGVARCHAR},
       </if>
     </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update exam_classify
+    set id = #{record.id,jdbcType=INTEGER},
+      title = #{record.title,jdbcType=VARCHAR},
+      `comment` = #{record.comment,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -154,8 +194,7 @@
   <update id="updateByExample" parameterType="map">
     update exam_classify
     set id = #{record.id,jdbcType=INTEGER},
-      content = #{record.content,jdbcType=VARCHAR},
-      semester = #{record.semester,jdbcType=VARCHAR}
+      title = #{record.title,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -163,19 +202,24 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.bhagava.traineemanage.entity.ExamClassify">
     update exam_classify
     <set>
-      <if test="content != null">
-        content = #{content,jdbcType=VARCHAR},
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
       </if>
-      <if test="semester != null">
-        semester = #{semester,jdbcType=VARCHAR},
+      <if test="comment != null">
+        `comment` = #{comment,jdbcType=LONGVARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.bhagava.traineemanage.entity.ExamClassify">
+    update exam_classify
+    set title = #{title,jdbcType=VARCHAR},
+      `comment` = #{comment,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
   <update id="updateByPrimaryKey" parameterType="com.bhagava.traineemanage.entity.ExamClassify">
     update exam_classify
-    set content = #{content,jdbcType=VARCHAR},
-      semester = #{semester,jdbcType=VARCHAR}
+    set title = #{title,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

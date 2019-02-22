@@ -1,5 +1,7 @@
 package com.bhagava.traineemanage.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -22,6 +24,7 @@ public class Volunteer implements Serializable {
      */
     private String voucher;
 
+    @DateTimeFormat( pattern = "yyyy-MM-dd" )
     private Date date;
 
     /**

@@ -1,11 +1,17 @@
-package com.bhagava.traineemanage.mapper;
+package com.bhagava.traineemanage.service;
 
 import com.bhagava.traineemanage.entity.ExamResult;
 import com.bhagava.traineemanage.entity.ExamResultExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
-public interface ExamResultMapper {
+import java.util.List;
+
+/**
+ * @Auther: FeiJunhao
+ * @Date: 2019/2/21 14:17
+ * @Description:
+ */
+public interface ExamResultService {
     long countByExample(ExamResultExample example);
 
     int deleteByExample(ExamResultExample example);

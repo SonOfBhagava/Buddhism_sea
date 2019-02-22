@@ -1,12 +1,17 @@
-package com.bhagava.traineemanage.mapper;
+package com.bhagava.traineemanage.service;
 
 import com.bhagava.traineemanage.entity.ExamClassify;
 import com.bhagava.traineemanage.entity.ExamClassifyExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
 
-public interface ExamClassifyMapper {
+import java.util.List;
+
+/**
+ * @Auther: FeiJunhao
+ * @Date: 2019/2/21 14:17
+ * @Description:
+ */
+public interface ExamClassifyService {
     long countByExample(ExamClassifyExample example);
 
     int deleteByExample(ExamClassifyExample example);
@@ -34,7 +39,4 @@ public interface ExamClassifyMapper {
     int updateByPrimaryKeyWithBLOBs(ExamClassify record);
 
     int updateByPrimaryKey(ExamClassify record);
-
-    @Select("select * from exam_classify where id = #{id}")
-    ExamClassify selectByExamClassifyId(Integer id);
 }

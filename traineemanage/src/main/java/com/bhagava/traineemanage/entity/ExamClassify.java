@@ -9,15 +9,12 @@ import java.io.Serializable;
 public class ExamClassify implements Serializable {
     private Integer id;
 
-    /**
-     * 考试内容
-     */
-    private String content;
+    private String title;
 
     /**
-     * up上学期，down下学期
+     * 考试内容描述
      */
-    private String semester;
+    private String comment;
 
     private static final long serialVersionUID = 1L;
 
@@ -29,20 +26,20 @@ public class ExamClassify implements Serializable {
         this.id = id;
     }
 
-    public String getContent() {
-        return content;
+    public String getTitle() {
+        return title;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getSemester() {
-        return semester;
+    public String getComment() {
+        return comment;
     }
 
-    public void setSemester(String semester) {
-        this.semester = semester;
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
     @Override
@@ -58,8 +55,8 @@ public class ExamClassify implements Serializable {
         }
         ExamClassify other = (ExamClassify) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getContent() == null ? other.getContent() == null : this.getContent().equals(other.getContent()))
-            && (this.getSemester() == null ? other.getSemester() == null : this.getSemester().equals(other.getSemester()));
+            && (this.getTitle() == null ? other.getTitle() == null : this.getTitle().equals(other.getTitle()))
+            && (this.getComment() == null ? other.getComment() == null : this.getComment().equals(other.getComment()));
     }
 
     @Override
@@ -67,8 +64,8 @@ public class ExamClassify implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-        result = prime * result + ((getContent() == null) ? 0 : getContent().hashCode());
-        result = prime * result + ((getSemester() == null) ? 0 : getSemester().hashCode());
+        result = prime * result + ((getTitle() == null) ? 0 : getTitle().hashCode());
+        result = prime * result + ((getComment() == null) ? 0 : getComment().hashCode());
         return result;
     }
 
@@ -79,8 +76,8 @@ public class ExamClassify implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", content=").append(content);
-        sb.append(", semester=").append(semester);
+        sb.append(", title=").append(title);
+        sb.append(", comment=").append(comment);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

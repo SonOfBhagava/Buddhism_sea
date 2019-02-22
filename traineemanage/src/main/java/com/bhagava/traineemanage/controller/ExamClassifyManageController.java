@@ -2,63 +2,57 @@ package com.bhagava.traineemanage.controller;
 
 import com.bhagava.common.entity.ResponseEntity;
 import com.bhagava.common.utils.EntitySwitchUtil;
-import com.bhagava.traineemanage.entity.ClassInfo;
-import com.bhagava.traineemanage.entity.ClassInfoExample;
 import com.bhagava.traineemanage.entity.ExamClassify;
 import com.bhagava.traineemanage.entity.ExamClassifyExample;
-import com.bhagava.traineemanage.service.ClassInfoService;
 import com.bhagava.traineemanage.service.ExamClassifyService;
 import com.bhagava.traineemanage.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Map;
 
 /**
- * created by FeiJunhao on ${date}
+ * @Auther: FeiJunhao
+ * @Date: 2019/2/21 14:49
+ * @Description:
  */
-@RestController
+@Controller
 @CrossOrigin
-@RequestMapping("/class")
-public class ClassManageController {
-    @Autowired
-    private ClassInfoService classInfoService;
+@RequestMapping("/examClassify")
+public class ExamClassifyManageController {
+
     @Autowired
     private ExamClassifyService examClassifyService;
 
     // 获得所有班级信息查询列表
-    @GetMapping("/get_list")
+    @PostMapping("/get_list")
     @ResponseBody
     public Object getList(int limit,long offset){
-        List<ClassInfo> rows = null;
-        ClassInfoExample ex = new ClassInfoExample();
+        List<ExamClassify> rows = null;
+        ExamClassifyExample ex = new ExamClassifyExample();
         if(limit != 0 && offset != 0L){
             ex.setLimit(limit);
             ex.setOffset(offset);
         }
-        ex.setOrderByClause("id desc");
-        long count = classInfoService.countByExample(ex);
+        long count = examClassifyService.countByExample(ex);
         try{
-            rows = classInfoService.selectByExample(ex);
+            rows = examClassifyService.selectByExampleWithBLOBs(ex);
         }catch (Exception e){
-            return EntitySwitchUtil.getMapByEntity(ResponseEntity.error(e.toString()));
+            return ResponseEntity.error(e.toString());
         }
         if(count == 0)
-            return EntitySwitchUtil.getMapByEntity(ResponseEntity.error("操作失败！"));
-        List<ExamClassify> examClassifyList = examClassifyService.selectByExampleWithBLOBs(new ExamClassifyExample());
-        Map<String,Object> map = Util.getReturnMap(rows,count);
-        map.put("examClassifyList",examClassifyList);
-        return EntitySwitchUtil.getMapByEntity(ResponseEntity.success(map));
+            return ResponseEntity.error("操作失败！");
+        return ResponseEntity.success(Util.getReturnMap(rows,count));
     }
 
     // 添加班级信息
-    @PostMapping("/add_class")
+    @PostMapping("/add")
     @ResponseBody
-    public Object add(ClassInfo classInfo){
+    public Object add(ExamClassify examClassify){
         int count = 0;
         try{
-            count = classInfoService.insert(classInfo);
+            count = examClassifyService.insert(examClassify);
         }catch (Exception e){
             return EntitySwitchUtil.getMapByEntity(ResponseEntity.error(e.toString()));
         }
@@ -71,31 +65,29 @@ public class ClassManageController {
     @GetMapping("/delete")
     @ResponseBody
     public Object delete(int id){
-        System.out.println("参数"+id);
         int count = 0;
         try{
-            count = classInfoService.deleteByPrimaryKey(id);
+            count = examClassifyService.deleteByPrimaryKey(id);
         }catch (Exception e){
             return EntitySwitchUtil.getMapByEntity(ResponseEntity.error(e.toString()));
         }
         if(count == 0)
             return EntitySwitchUtil.getMapByEntity(ResponseEntity.error("操作失败！"));
-        return EntitySwitchUtil.getMapByEntity(ResponseEntity.success(count));
+        return ResponseEntity.success(count);
     }
 
     // 修改信息
     @PostMapping("/update")
     @ResponseBody
-    public Object update(ClassInfo classInfo){
+    public Object update(ExamClassify examClassify){
         int count = 0;
         try{
-            count = classInfoService.updateByPrimaryKey(classInfo);
+            count = examClassifyService.updateByPrimaryKey(examClassify);
         }catch (Exception e){
             return EntitySwitchUtil.getMapByEntity(ResponseEntity.error(e.toString()));
         }
         if(count == 0)
             return EntitySwitchUtil.getMapByEntity(ResponseEntity.error("操作失败！"));
-        return EntitySwitchUtil.getMapByEntity(ResponseEntity.success(count));
+        return ResponseEntity.success(count);
     }
-
 }

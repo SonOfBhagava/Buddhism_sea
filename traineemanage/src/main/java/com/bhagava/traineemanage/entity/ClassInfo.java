@@ -4,6 +4,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
  * class_info
@@ -30,6 +31,16 @@ public class ClassInfo implements Serializable {
      * 班级状态:0未开班/1开班中/2已结业
      */
     private Integer status;
+
+    public List<ClassExam> getClassExamList() {
+        return classExamList;
+    }
+
+    public void setClassExamList(List<ClassExam> classExamList) {
+        this.classExamList = classExamList;
+    }
+
+    private List<ClassExam> classExamList;
 
     private static final long serialVersionUID = 1L;
 

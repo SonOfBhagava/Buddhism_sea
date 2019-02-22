@@ -9,6 +9,7 @@
     <result column="down_start_date" jdbcType="TIMESTAMP" property="downStartDate" />
     <result column="down_end_date" jdbcType="TIMESTAMP" property="downEndDate" />
     <result column="status" jdbcType="INTEGER" property="status" />
+    <collection property="classExamList" column="id"  fetchType="eager" select="com.bhagava.traineemanage.mapper.ClassExamMapper.selectByClassId" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
